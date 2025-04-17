@@ -45,16 +45,14 @@ export function Sidebar() {
       <nav className="flex-1 px-4">
         <div className="space-y-1">
           {mainNavItems.map((item) => (
-            <Link key={item.path} href={item.path}>
-              <a className={cn(
+            <Link key={item.path} href={item.path} className={cn(
                 "flex items-center px-2 py-2 text-sm font-medium rounded-lg",
                 isActive(item.path) 
                   ? "text-primary bg-blue-50" 
                   : "text-gray-700 hover:bg-gray-100"
               )}>
-                <item.icon className="mr-3 h-5 w-5" />
-                <span>{item.label}</span>
-              </a>
+              <item.icon className="mr-3 h-5 w-5" />
+              <span>{item.label}</span>
             </Link>
           ))}
         </div>
@@ -65,11 +63,9 @@ export function Sidebar() {
           </h3>
           <div className="mt-2 space-y-1">
             {categories.map((category) => (
-              <Link key={category.id} href={`/browse/category/${category.id}`}>
-                <a className="flex items-center px-2 py-2 text-sm font-medium rounded-lg text-gray-700 hover:bg-gray-100">
-                  <span className={`w-2 h-2 rounded-full bg-${category.color}-500 mr-3`}></span>
-                  <span>{category.name}</span>
-                </a>
+              <Link key={category.id} href={`/browse/category/${category.id}`} className="flex items-center px-2 py-2 text-sm font-medium rounded-lg text-gray-700 hover:bg-gray-100">
+                <span className={`w-2 h-2 rounded-full bg-${category.color}-500 mr-3`}></span>
+                <span>{category.name}</span>
               </Link>
             ))}
           </div>
@@ -81,11 +77,9 @@ export function Sidebar() {
           </h3>
           <div className="mt-2 space-y-1">
             {(recentlyViewed.length > 0 ? recentlyViewed : fallbackRecentlyViewed).map((item) => (
-              <Link key={item.id} href={`/notes/${item.id}`}>
-                <a className="flex items-center px-2 py-2 text-sm font-medium rounded-lg text-gray-700 hover:bg-gray-100">
-                  <FileText className="mr-3 h-5 w-5 text-gray-400" />
-                  <span>{item.title}</span>
-                </a>
+              <Link key={item.id} href={`/notes/${item.id}`} className="flex items-center px-2 py-2 text-sm font-medium rounded-lg text-gray-700 hover:bg-gray-100">
+                <FileText className="mr-3 h-5 w-5 text-gray-400" />
+                <span>{item.title}</span>
               </Link>
             ))}
           </div>
