@@ -27,15 +27,16 @@ export async function apiRequest(
   };
   
   // Handle different API endpoints with mock data
-  if (url === '/api/login') {
-    const user = await mockAuth.login(data.username, data.password);
+  if (url === '/api/login' && data && typeof data === 'object') {
+    const loginData = data as { username: string; password: string };
+    const user = await mockAuth.login(loginData.username, loginData.password);
     if (!user) {
       throw new Error("Invalid username or password");
     }
     return createMockResponse(user);
   }
   
-  if (url === '/api/register') {
+  if (url === '/api/register' && data) {
     const user = await mockAuth.register(data);
     return createMockResponse(user);
   }
@@ -93,6 +94,26 @@ export const getQueryFn: <T>(options: {
     if (url.includes('/notes/') && url.includes('/ratings')) {
       const noteId = parseInt(url.split('/')[3]);
       return await mockApi.getRatingsByNote(noteId) as unknown as T;
+    }
+    
+    // Handle users endpoint
+    if (url === '/api/users') {
+      return await mockApi.getUsers() as unknown as T;
+    }
+    
+    if (url.startsWith('/api/users/') && url.includes('/notes')) {
+      const userId = parseInt(url.split('/')[3]);
+      return await mockApi.getNotesByUser(userId) as unknown as T;
+    }
+    
+    if (url.startsWith('/api/users/') && !url.includes('/notes')) {
+      const userId = parseInt(url.split('/')[3]);
+      return await mockApi.getUser(userId) as unknown as T;
+    }
+    
+    // Handle ratings endpoint
+    if (url === '/api/ratings') {
+      return await mockApi.getAllRatings() as unknown as T;
     }
     
     // For any other queries we might have missed

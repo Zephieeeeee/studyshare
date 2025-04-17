@@ -179,8 +179,10 @@ export const mockAuth = {
 
 // Helper functions to simulate API endpoints
 export const mockApi = {
+  // Categories
   getCategories: () => Promise.resolve(categories),
   
+  // Notes
   getNotes: () => Promise.resolve(notes),
   
   getNotesByCategory: (categoryId: number) => 
@@ -191,6 +193,9 @@ export const mockApi = {
   
   getNote: (noteId: number) => 
     Promise.resolve(notes.find(note => note.id === noteId) || null),
+  
+  // Ratings
+  getAllRatings: () => Promise.resolve(ratings),
   
   getRatingsByNote: (noteId: number) => 
     Promise.resolve(ratings.filter(rating => rating.noteId === noteId)),
@@ -212,6 +217,60 @@ export const mockApi = {
     if (index !== -1) {
       ratings[index] = { ...ratings[index], ...ratingData };
       return Promise.resolve(ratings[index]);
+    }
+    return Promise.resolve(null);
+  },
+  
+  // Users
+  getUsers: () => Promise.resolve(users),
+  
+  getUser: (userId: number) =>
+    Promise.resolve(users.find(user => user.id === userId) || null),
+  
+  updateUser: (userId: number, userData: any) => {
+    const index = users.findIndex(user => user.id === userId);
+    if (index !== -1) {
+      users[index] = { ...users[index], ...userData };
+      return Promise.resolve(users[index]);
+    }
+    return Promise.resolve(null);
+  },
+  
+  // File operations (mock)
+  uploadFile: (file: File, noteData: any) => {
+    const noteId = notes.length + 1;
+    const newNote = {
+      id: noteId,
+      title: noteData.title,
+      description: noteData.description,
+      fileName: file.name,
+      fileSize: file.size,
+      fileType: file.type,
+      uploadDate: new Date(),
+      userId: noteData.userId || 1, // Default to first user if not specified
+      categoryId: noteData.categoryId,
+      downloads: 0,
+      views: 0
+    };
+    
+    notes.push(newNote as Note);
+    return Promise.resolve(newNote);
+  },
+  
+  incrementNoteViews: (noteId: number) => {
+    const note = notes.find(n => n.id === noteId);
+    if (note) {
+      note.views++;
+      return Promise.resolve(note);
+    }
+    return Promise.resolve(null);
+  },
+  
+  incrementNoteDownloads: (noteId: number) => {
+    const note = notes.find(n => n.id === noteId);
+    if (note) {
+      note.downloads++;
+      return Promise.resolve(note);
     }
     return Promise.resolve(null);
   }
