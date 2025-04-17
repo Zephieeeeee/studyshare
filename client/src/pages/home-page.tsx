@@ -60,18 +60,16 @@ export default function HomePage() {
             <h2 className="text-xl font-bold mb-4">Top Categories</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
               {categories.map((category) => (
-                <Link key={category.id} href={`/browse/category/${category.id}`}>
-                  <a className="bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition text-center">
-                    <div className={`bg-${category.color}-100 text-${category.color}-600 rounded-full mx-auto mb-3 w-12 h-12 flex items-center justify-center`}>
-                      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                      </svg>
-                    </div>
-                    <h3 className="font-medium text-gray-800">{category.name}</h3>
-                    <p className="text-sm text-gray-500 mt-1">
-                      {Math.floor(Math.random() * 300)} notes
-                    </p>
-                  </a>
+                <Link key={category.id} href={`/browse/category/${category.id}`} className="bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition text-center">
+                  <div className={`bg-${category.color}-100 text-${category.color}-600 rounded-full mx-auto mb-3 w-12 h-12 flex items-center justify-center`}>
+                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                  </div>
+                  <h3 className="font-medium text-gray-800">{category.name}</h3>
+                  <p className="text-sm text-gray-500 mt-1">
+                    {Math.floor(Math.random() * 300)} notes
+                  </p>
                 </Link>
               ))}
             </div>
