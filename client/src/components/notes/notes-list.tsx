@@ -75,8 +75,8 @@ export function NotesList({
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold">{title}</h2>
         {viewAllLink && (
-          <Link href={viewAllLink}>
-            <a className="text-primary hover:underline text-sm font-medium">View all</a>
+          <Link href={viewAllLink} className="text-primary hover:underline text-sm font-medium">
+            View all
           </Link>
         )}
       </div>
