@@ -10,7 +10,9 @@ import { useQuery } from "@tanstack/react-query";
 import { Category } from "@shared/schema";
 
 export default function HomePage() {
+  // Get user if authenticated, or null if guest
   const { user } = useAuth();
+  
   const { data: categories = [] } = useQuery<Category[]>({
     queryKey: ['/api/categories'],
   });
