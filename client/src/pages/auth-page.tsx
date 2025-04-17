@@ -186,6 +186,14 @@ export default function AuthPage() {
                   >
                     Login
                   </Button>
+                  <Button
+                    type="button"
+                    variant="outline" 
+                    className="w-full mt-2"
+                    onClick={() => setLocation("/")}
+                  >
+                    Continue as Guest
+                  </Button>
                   <p className="text-center text-sm text-gray-600 mt-4">
                     <span>Don't have an account? </span>
                     <button
@@ -273,6 +281,14 @@ export default function AuthPage() {
                     className="w-full"
                   >
                     Register
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline" 
+                    className="w-full mt-2"
+                    onClick={() => setLocation("/")}
+                  >
+                    Continue as Guest
                   </Button>
                   <p className="text-center text-sm text-gray-600 mt-4">
                     <span>Already have an account? </span>

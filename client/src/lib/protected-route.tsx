@@ -48,9 +48,10 @@ function ProtectedRouteContent({
     );
   }
 
-  if (!user) {
-    return <Redirect to="/auth" />;
-  }
+  // Removed to allow guest access
+  // if (!user) {
+  //   return <Redirect to="/auth" />;
+  // }
 
   return <Component />;
 }
